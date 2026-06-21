@@ -70,9 +70,9 @@ delivered_orders AS (
 flag_dirty_data AS (
 SELECT o.*,
 	   CASE 
-			WHEN 	order_approved_at IS NULL 
-					OR order_delivered_carrier_date IS NULL 
-                    OR order_delivered_customer_date IS NULL 
+			WHEN 	o.order_approved_at IS NULL 
+					OR o.order_delivered_carrier_date IS NULL 
+                    OR o.order_delivered_customer_date IS NULL 
 					OR o.order_purchase_timestamp > order_delivered_carrier_date
 					OR o.order_approved_at > order_delivered_customer_date
                     OR o.order_approved_at > order_delivered_carrier_date
@@ -87,19 +87,19 @@ validated_delivered_orders AS (
 SELECT *
 FROM flag_dirty_data f
 WHERE f.flag = 0 
-		AND c.order_id != '9675440ebf61a1a3482cc6308e3ebd28'
+		AND f.order_id != '9675440ebf61a1a3482cc6308e3ebd28'
 ),
 
 delivery_metrics AS (
     SELECT
-        o.order_id,
-        o.customer_id,
-        o.order_status,
-        o.order_purchase_timestamp,
-        o.order_approved_at,
-        o.order_delivered_carrier_date,
-        o.order_delivered_customer_date,
-        o.order_estimated_delivery_date,
+        d.order_id,
+        d.customer_id,
+        d.order_status,
+        d.order_purchase_timestamp,
+        d.order_approved_at,
+        d.order_delivered_carrier_date,
+        d.order_delivered_customer_date,
+        d.order_estimated_delivery_date,
 
 	   TIMESTAMPDIFF(HOUR,d.order_purchase_timestamp,d.order_delivered_customer_date) AS delivery_time_in_hours,
        ROUND(TIMESTAMPDIFF(HOUR,d.order_purchase_timestamp,d.order_delivered_customer_date)/24, 1) AS delivery_time_in_days,
@@ -107,7 +107,7 @@ delivery_metrics AS (
 	   ROUND(TIMESTAMPDIFF(HOUR,d.order_approved_at,d.order_delivered_carrier_date)/24, 1) AS seller_to_carrier_time_in_days,
        ROUND(TIMESTAMPDIFF(HOUR,d.order_delivered_carrier_date,d.order_delivered_customer_date)/24, 1) AS shipping_time_in_days,
        ROUND(TIMESTAMPDIFF(HOUR,d.order_estimated_delivery_date,d.order_delivered_customer_date)/24, 1) AS delay_in_days
-    FROM validated_delivered_orders o
+    FROM validated_delivered_orders d
 )
 
 SELECT
