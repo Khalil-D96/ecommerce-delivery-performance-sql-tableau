@@ -24,7 +24,7 @@ WITH filtered_orders AS (
 SELECT
     fo.order_status,
     COUNT(DISTINCT fo.order_id) AS num_of_orders,
-    ROUND(COUNT(DISTINCT o.order_id) * 100.0 / 
+    ROUND(COUNT(DISTINCT fo.order_id) * 100.0 / 
 		(SELECT COUNT(DISTINCT f1.order_id) 
          FROM filtered_orders f1),
         2
