@@ -1,117 +1,83 @@
-# Delivery Pipeline Analysis for E-Commerce Market Expansion
+# E-Commerce Delivery Performance Analysis
 
-## Project Overview
-
-This project analyzes the delivery performance of Magist, a Brazilian order management and logistics service provider, in the context of a potential market expansion by Eniac, a European e-commerce company specializing in Apple products and curated tech accessories.
-
-Eniac is considering entering the Brazilian market through a 3-year partnership with Magist. However, the company has two major concerns:
-
-1. Whether Magist is a suitable partner for high-end tech products.
-2. Whether Magist can provide delivery performance that matches Eniac’s customer-service standards.
-
-This project focuses on the second question: **Are Magist’s deliveries fast and reliable enough for Eniac?**
+SQL and Tableau case study analyzing delivery performance for an e-commerce market expansion decision.
 
 ## Project Context
 
-This was a group case study completed during my Data Analysis & AI training.  
-My main contribution focused on the **delivery performance analysis**, including SQL-based data preparation, delivery time calculations, late-order analysis, and Tableau visualizations.
+This project was completed as part of a group case study during my Data Analysis & AI training.
 
-## Business Questions
+The case study focused on Eniac, a European e-commerce company considering an expansion into the Brazilian market through Magist, a Brazilian order management and logistics provider.
 
-The analysis was guided by the following questions:
-
-- What percentage of orders were successfully delivered?
-- How long does the delivery process take on average?
-- Which part of the delivery pipeline causes the most delay?
-- Are delivery delays random or systematic?
-- Which Brazilian states show the longest delivery times?
-- Are Eniac-relevant product categories affected by slow delivery?
-- Could Magist’s delivery performance create a risk for customer satisfaction?
-
-## Tools Used
-
-- SQL
-- MySQL
-- Tableau
-- Data Modeling
-- Data Cleaning
-- Business Analysis
-
-## Database Schema
-
-The database contains several connected tables, including:
-
-- `orders`
-- `order_items`
-- `products`
-- `customers`
-- `sellers`
-- `geo`
-- `order_reviews`
-- `order_payments`
-- `product_category_name_translation`
-
-The analysis mainly uses order, customer, geographic, product, and order item data to evaluate delivery performance across regions and product categories.
-
-## Data Preparation
-
-I created a new analytical table called `orders_new`, focusing only on delivered orders with valid delivery timestamps.
-
-The data preparation process included:
-
-- Filtering orders with corresponding order items.
-- Keeping only delivered orders.
-- Removing records with missing or inconsistent delivery dates.
-- Calculating delivery-related metrics.
-- Creating a late-order flag.
-
-Calculated metrics included:
-
-- `delivery_time_in_days`
-- `processing_time_in_days`
-- `seller_to_carrier_time_in_days`
-- `shipping_time_in_days`
-- `delay_in_days`
-- `late_flag`
-
-## Key Metrics
-
-The analysis showed:
-
-- Total delivered orders analyzed: **95,081**
-- Average delivery time: **12.6 days**
-- Average processing time: **0.4 days**
-- Average seller-to-carrier time: **2.8 days**
-- Average shipping time: **9.3 days**
-- Late orders: **8.1%**
-
-The main bottleneck was the shipping phase, not the internal processing phase.
-
-## Tableau Analysis
-
-The Tableau dashboard includes:
-
-1. Order status distribution
-2. Overall delivery pipeline analysis
-3. Delivery pipeline by product category
-4. Delivery pipeline by Brazilian state
-5. Delivery pipeline by state and product category
-
-These visualizations helped identify regional and category-specific delivery risks.
+My contribution focused on the delivery performance analysis.
 
 ## My Contribution
 
-In this group project, I focused on the delivery analysis part:
+I worked on the logistics and delivery part of the project, including:
 
-- Designed SQL queries for delivery performance analysis.
-- Created a cleaned analytical table for delivered orders.
-- Calculated delivery time, shipping time, processing time, delay, and late-order metrics.
-- Analyzed delivery performance by state and product category.
-- Built Tableau visualizations for delivery pipeline analysis.
-- Contributed to the final business recommendation.
+* Understanding the relational database schema
+* Preparing an analytical table using SQL
+* Calculating delivery-related metrics
+* Analyzing late orders
+* Comparing delivery performance by state and product category
+* Creating Tableau visualizations for the delivery pipeline
 
-## Limitations
+## Tools Used
 
-- The analysis is based on a snapshot of historical data.
-- External factors such as logistics partners, local infrastructure, and seasonal effects were not fully modeled.
-- The original dataset is not included in this repository due to training-provider restrictions.
+* SQL
+* MySQL
+* Tableau
+* Data Cleaning
+* Data Analysis
+* Data Visualization
+
+## SQL Workflow
+
+The SQL part is divided into two scripts:
+
+### 1. Data preparation
+
+`sql/01_create_orders_new_table.sql`
+
+This script creates an analytical table for delivered orders and calculates delivery-related metrics such as:
+
+* delivery time
+* processing time
+* seller-to-carrier time
+* shipping time
+* delay
+* late-order flag
+
+### 2. Analysis queries
+
+`sql/02_delivery_pipeline_analysis_queries.sql`
+
+This script contains the queries used to extract the results for the Tableau analysis.
+
+The analysis looks at delivery performance by:
+
+* order status
+* product category
+* Brazilian state
+* state and product category
+
+## Tableau Visualizations
+
+The Tableau screenshots show different parts of the delivery analysis, including:
+
+* order status distribution
+* overall delivery pipeline
+* delivery performance by product category
+* delivery performance by state
+* delivery performance by state and product category
+
+## Result
+
+The detailed findings and recommendation are available here:
+
+`reports/final_recommendation.md`
+
+In short, the analysis suggests that Magist is reliable in terms of completed deliveries, but delivery speed and regional differences should be monitored carefully before committing to a long-term partnership.
+
+## Note
+
+This was a group project. The repository focuses on my individual contribution to the delivery performance analysis.
