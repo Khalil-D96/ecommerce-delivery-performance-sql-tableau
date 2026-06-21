@@ -1,5 +1,7 @@
 # Final Recommendation
+
 This recommendation is based on the delivery performance analysis conducted using SQL and Tableau.
+
 
 ## Key Findings
 
@@ -9,6 +11,7 @@ This recommendation is based on the delivery performance analysis conducted usin
 - Some important regions and Eniac-relevant product categories are affected by longer delivery times.
 - SP (SAO PAULO) has a high number of orders and relatively better delivery performance.
 - RJ (RIO DE JANEIRO) shows significantly longer delivery times and higher late-order risk.
+
 
 ## Business Recommendation
 
